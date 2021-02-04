@@ -11,33 +11,28 @@
     <header>Select a currency to receive current price</header>
 <di id='tickers'>
 </div>
-</body>
+</body><script>
+    const getData = () => {
+        fetch("https://api.blockchain.com/v3/exchange/tickers/")
+            .then(allKeys => allKeys.json())
+            .then(x => Object.keys(allKeys))
+            .then(x => {
+                console.log(x);
+                return x;
+            })
+            .then(function () {
+                let option = document.getElementById('tickers');
+                for (item in x) {
+                    option.append('<option value"">' + item.value + '</option>');
+                }
 
-    <script>
-        const getData = () => {
-            
-                fetch("https://api.blockchain.com/v3/exchange/tickers/")
-                .then(allKeys =>  Object.keys(response.data))
-                .then(allKeys => allKeys.json())
-                .then(function (response) {
-                    let option = document.getElementById('tickers');
-                    for (item in allkeys) {
-                        option.append('<option value"">' + item.value + '</option>');
-                        console.log(allKeys);
-                    }
-                   
-                    
-                })
+            })
 
-                .catch(function (error) {s
+                .catch(function (error) {
                     console.log(error);
                 });
-        };
-
-
-
-
-
-
+                
+              }; 
+              getData();
     </script>
 </html>
