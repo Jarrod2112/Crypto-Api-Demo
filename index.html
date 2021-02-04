@@ -9,38 +9,35 @@
 
 <body>
     <header>Select a currency to receive current price</header>
-    <select id="tickers">
-    </select>
-    
+<di id='tickers'>
+</div>
+</body>
+
     <script>
-        const axios = require("axios").default;
         const getData = () => {
-            axios
-                .get("https://api.blockchain.com/v3/exchange/tickers")
+            
+                fetch("https://api.blockchain.com/v3/exchange/tickers/")
+                .then(allKeys =>  Object.keys(response.data))
+                .then(allKeys => allKeys.json())
                 .then(function (response) {
-                    keys = Object.keys(response.data);
-                    option = document.getElementById("tickers");
-                    for(item in keys) {
-                        option.append('<option value"">' + item + '</option>');
+                    let option = document.getElementById('tickers');
+                    for (item in allkeys) {
+                        option.append('<option value"">' + item.value + '</option>');
+                        console.log(allKeys);
                     }
-                
-                        
-                    });
-
+                   
                     
-                              
-
-
                 })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
+
+                .catch(function (error) {s
                     console.log(error);
                 });
         };
+
+
+
+
+
+
     </script>
-
-</body>
-
 </html>
