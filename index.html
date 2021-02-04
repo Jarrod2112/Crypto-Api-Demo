@@ -15,14 +15,14 @@
     const getData = () => {
         fetch("https://api.blockchain.com/v3/exchange/tickers/")
             .then(allKeys => allKeys.json())
-            .then(x => Object.keys(allKeys))
+            .then(J => Object.keys(allKeys))
             .then(x => {
                 console.log(x);
                 return x;
             })
             .then(function () {
-                let option = document.getElementById('tickers');
-                for (item in x) {
+                let option = document.getElementById('#tickers');
+                for (item in J) {
                     option.append('<option value"">' + item.value + '</option>');
                 }
 
