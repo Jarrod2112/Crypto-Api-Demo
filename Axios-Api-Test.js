@@ -2,15 +2,13 @@ const axios = require("axios").default;
 
 const getData = () => {
     axios
-        .get("https://api.blockchain.com/v3/exchange/tickers/LTC-USD")
+        .get("https://api.blockchain.com/v3/exchange/tickers")
         .then(function (response) {
-            return response.data;
+           keys = Object.keys(response.data);
+                      console.log(keys);
         })
         .then(function (response) {
             console.log(response);
-        })
-        .then(function (tickers) {
-
         })
         .catch(function (error) {
             console.log(error);
@@ -18,12 +16,11 @@ const getData = () => {
 };
 
 
-//getData();
+getData();
 //getData2();
 
-let test = "test";
-console.log("https://api.blockchain.com/v3/exchange/tickers/" + test);
+//let test = "test";
+//console.log("https://api.blockchain.com/v3/exchange/tickers/" + test);
 
 
-//Create field that excepts a symbol (BTC-USD)
-//Create button the submits GET request for price pertaining to symbol entered.
+//Return data and add put in option drop down menu

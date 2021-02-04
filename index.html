@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select a currency to receive current e</title>
+</head>
+
+<body>
+    <header>Select a currency to receive current price</header>
+    <select id="tickers">
+    </select>
+    
+    <script>
+        const axios = require("axios").default;
+        const getData = () => {
+            axios
+                .get("https://api.blockchain.com/v3/exchange/tickers")
+                .then(function (response) {
+                    keys = Object.keys(response.data);
+                    option = document.getElementById("tickers");
+                    for(item in keys) {
+                        option.append('<option value"">' + item + '</option>');
+                    }
+                
+                        
+                    });
+
+                    
+                              
+
+
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        };
+    </script>
+
+</body>
+
+</html>
