@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,34 +8,31 @@
 </head>
 
 <body>
+    <div id="myData"></div>
     <header>Select a currency to receive current price</header>
-    </body>
-    <script>
-        const getData = () => {
-            fetch("https://api.blockchain.com/v3/exchange/tickers/")
-                .then(allKeys => allKeys.json())
-                //.then(x => {
-                   // console.log(x);
-                   // return x;
-                //})
-                .then(function (allKeys) {
-                    let parrent = document.createElement("div");
-                    let p = document.createElement("p")
-                    for (item in allKeys) {
-                        parrent.append(item,p);
-                        
-                    }
-                    
-                   })
-                   .then(x => {
-                        console.log(x);
-                        return x})
-                   
-                .catch(function (error) {
-                    console.log(error);
-                });
-    
-              }; 
-              getData();
-    </script>
+</body>
+<script>
+    const getData = () => {
+        fetch("https://api.blockchain.com/v3/exchange/tickers/")
+            .then(allKeys => allKeys.json())
+            .then(x => {
+                console.log(x);
+                return x;
+            })
+            .then(function (allKeys) {
+                let mainContainer = document.getElementById("myData");
+                for (let i = 0; i < allKeys.length; i++) {
+                    let div = document.createElement("div");
+                    div.innerHTML = allKeys[i]
+                    mainContainer.appendChild(div);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+    getData();
+
+</script>
+
 </html>
