@@ -10,6 +10,7 @@
 <body>
     <header>Select a currency to receive current price</header>
     <select id="selectCrypto"></select>
+    <label for="">Crypto price: </label><input type="textbox" id="output" name="width"></input>
 </body>
 <script>
     const getData = () => {
@@ -28,10 +29,20 @@
                     mainContainer.appendChild(opt);
                 }
             })
-            .catch(function (error) {
-                console.log(error);
-            });
-    };
+            .then(function getPrices(allKeys) {
+                    let outContainer = document.getElementById("output");
+                    for (let i = 0; i < allKeys.length; i++) {
+                        let price = document.createElement("p");
+                        price.value = allKeys[i].price_24h;
+                        outContainer.appendChild(price);
+                    }
+                })
+                
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            };
+    
     getData();
 
 </script>
