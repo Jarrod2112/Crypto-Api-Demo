@@ -8,8 +8,8 @@
 </head>
 
 <body>
-    <div id="myData"></div>
     <header>Select a currency to receive current price</header>
+    <select id="selectCrypto"></select>
 </body>
 <script>
     const getData = () => {
@@ -20,11 +20,12 @@
                 return x;
             })
             .then(function (allKeys) {
-                let mainContainer = document.getElementById("myData");
+                let mainContainer = document.getElementById("selectCrypto");
                 for (let i = 0; i < allKeys.length; i++) {
-                    let div = document.createElement("div");
-                    div.innerHTML = allKeys[i]
-                    mainContainer.appendChild(div);
+                    let opt = document.createElement('option');
+                    opt.innerHTML = allKeys[i].symbol;
+                    opt.value = allKeys[i];
+                    mainContainer.appendChild(opt);
                 }
             })
             .catch(function (error) {
