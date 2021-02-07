@@ -1,51 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Select a currency to receive current e</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>Select a currency to receive current price</header>
-    <select id="selectCrypto" onchange="getPrices(allkeys)"></select>
-    <label for="">Crypto price: </label><input type="textbox" id="outPut" name="width"></input>
-</body>
-<script>
+    <select id="selectCrypto"></select>
+    <label for="">Crypto price: </label
+    ><span id="outPut"></span>
+  </body>
+  <script>
+    let tap = (x) => {
+      console.log(x);
+      return x;
+    };
     const getData = () => {
-        fetch("https://api.blockchain.com/v3/exchange/tickers/")
-            .then(allKeys => allKeys.json())
-            .then(x => {
-                console.log(x);
-                return x;
-            })
-            .then(function (allKeys) {
-                let mainContainer = document.getElementById("selectCrypto");
-                for (let i = 0; i < allKeys.length; i++) {
-                    let opt = document.createElement('option');
-                    opt.innerHTML = allKeys[i].symbol;
-                    opt.value = allKeys[i];
-                    mainContainer.appendChild(opt);
-                }
-            })
-            .then(function getPrices(allKeys) {
-                    let outContainer = document.getElementById("outPut");
-                    for (let i = 0; i < allKeys.length; i++) {
-                        let price = document.createElement("p");
-                        price.value = allKeys[i].price_24h;
-                        outContainer.appendChild(price.value);
-                    }
-                })
-                                
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            };
-    
+      fetch("https://api.blockchain.com/v3/exchange/tickers/")
+        .then((allKeys) => allKeys.json())
+        .then(function (allKeys) {
+          let mainContainer = document.getElementById("selectCrypto");
+          for (let i = 0; i < allKeys.length; i++) {
+            let opt = document.createElement("option");
+            opt.innerHTML = allKeys[i].symbol;
+            opt.value = allKeys[i].symbol;
+            mainContainer.appendChild(opt);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+   
     getData();
-    document.getElementById("selectCrypto").addEventListener('onchange', getPrices(allKeys));
-
-</script>
-
+    document
+      .getElementById("selectCrypto")
+      .addEventListener("change", function (e) {
+        // Make api call to get price
+        // Convert response from JSON
+        // Set text in DOM
+        const outputField = document.getElementById("outPut");
+        fetch(
+          "https://api.blockchain.com/v3/exchange/tickers/" + e.target.value)
+        .then((price) => price.json())
+        .then(output => {
+            outputField.append(output.last_trade_price);
+            console.log(output.last_trade_price);
+        })
+        console.log(e.target.value);
+      });
+  </script>
 </html>
