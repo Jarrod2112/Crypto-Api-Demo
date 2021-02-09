@@ -1,0 +1,18 @@
+div {
+    position: absolute;
+    width: 00px;
+    height: 200px;
+    z-index: 15;
+    top: 50%;
+    left: 40%;    
+}
+
+
+#Eth {
+    font-size:100px;
+  transform: scale(.5, 1);
+}
+
+
+
+
