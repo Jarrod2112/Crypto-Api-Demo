@@ -1,3 +1,7 @@
+body {
+    background-color: rgba(80, 98, 255, 0);
+}
+
 div {
     position: absolute;
     width: 00px;
@@ -11,6 +15,12 @@ div {
 #Eth {
     font-size:100px;
   transform: scale(.5, 1);
+  }
+
+header {
+    font-weight: bold;
+    color: #fff;
+    font-size: 25px;
 }
 
 
