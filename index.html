@@ -54,9 +54,7 @@
                 .then((price) => price.json())
                 .then(output => {
                     outputField.innerText = output.last_trade_price;
-                    console.log(output.last_trade_price);
-                })
-            console.log(e.target.value);
-        });
+                    })
+                 });
 </script>
 </html>
